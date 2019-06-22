@@ -1,0 +1,28 @@
+body {
+    background: #f0f0f0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.listItem {
+  border-left: solid 1rem;
+  border-radius: .5rem; 
+  font-size: 1.125rem;
+  .status{
+    font-size: 1.2rem;
+  }
+    &.success {
+        border-color: #008852;
+    }
+    &.warning {
+        border-color: #ffc600;
+    }
+    &.error {
+        border-color: #e73520;
+    }
+}
+
+// stupid CSS
+.listItem {
+  max-width: 414px;
+  height: 83px;
+}
