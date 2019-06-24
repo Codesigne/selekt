@@ -7,7 +7,26 @@ body{
   border-left: solid 1rem;
   font-size: 1.125rem;
   height: 84px;
+  &.success{
+    border-color:#1b8852;  
+  }
+  &.error{
+    border-color:#e73520;  
+  }
+  &.warning{
+    border-color:#f9c600;  
+    
+  }
+  &__body{
+    min-width: 0;
+  }  
   &__status{
     font-size: 1.2rem;
+  }
+  &__msg{
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
