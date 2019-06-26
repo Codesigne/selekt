@@ -17,7 +17,7 @@ class App extends React.Component {
     event.preventDefault();
     (item.msg !== "") &&
       (this.setState(state => {
-        let { msg, status, list } = state;
+        let {  list } = state;
         return { list: [...list, { id: Date.now(), ...item }] }
       }, this.clearInput
       ))
