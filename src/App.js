@@ -8,34 +8,17 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      msg: "",
-      status: "success",
       list: []
     }
-    this.handleInputChange = this.handleInputChange.bind(this);
     this.addItem = this.addItem.bind(this);
     this.removeListItem = this.removeListItem.bind(this);
   }
-
-  handleInputChange(event) {
-    const { value, name } = event.target
-    this.setState((state) => ({
-      [name]: value
-    }))
-  }
-  clearInput(state) {
-    this.setState(
-      state => ({
-        msg: ""
-      })
-    )
-  }
-  addItem(event) {
+  addItem(event, item) {
     event.preventDefault();
-    (this.state.msg !== "") &&
+    (item.msg !== "") &&
       (this.setState(state => {
         let { msg, status, list } = state;
-        return { list: [...list, { id: Date.now(), msg, status }] }
+        return { list: [...list, { id: Date.now(), ...item }] }
       }, this.clearInput
       ))
   }
@@ -55,9 +38,11 @@ class App extends React.Component {
           additem={this.addItem}
           msg={this.state.msg}
           status={this.state.status}
-        ></Header>
+        >
+        </Header>
         <div className="p-2">
-          <List list={this.state.list} removeListItem={this.removeListItem}></List>
+          <List list={this.state.list} removeListItem={this.removeListItem}>
+          </List>
         </div>
       </>
     );
