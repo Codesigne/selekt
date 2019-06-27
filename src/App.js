@@ -5,6 +5,10 @@ import List from './components/List'
 import Header from './components/Header'
 
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+
+import { ADD_ITEM } from './store/actions/index'
 
 class App extends React.Component {
   constructor(props) {
@@ -15,14 +19,19 @@ class App extends React.Component {
     this.addItem = this.addItem.bind(this);
     this.removeListItem = this.removeListItem.bind(this);
   }
-  addItem(event, item) {
-    event.preventDefault();
-    (item.msg !== "") &&
-      (this.setState(state => {
-        let { list } = state;
-        return { list: [...list, { id: Date.now(), ...item }] }
-      }, this.clearInput
-      ))
+  addItem(item) {
+    // event.preventDefault();
+    // (item.msg !== "") &&
+    // (this.setState(state => {
+    //   let { list } = state;
+    //   return { list: [...list, { id: Date.now(), ...item }] }
+    // }, this.clearInput
+    // ))
+    
+    console.log("app additem", item);
+    (item.msg !== "") && (
+      this.props.ADD_ITEM(item))
+
   }
   removeListItem(event) {
     let id = parseInt(event.target.dataset.itemkey)
@@ -38,12 +47,20 @@ class App extends React.Component {
         <Header
           handleinputchange={this.handleInputChange}
           additem={this.addItem}
+          // additem={this.ADD_ITEM}
           msg={this.state.msg}
           status={this.state.status}
         >
         </Header>
         <div className="p-2">
-          <List list={this.state.list} removeListItem={this.removeListItem}>
+
+        
+        {
+
+          console.log(this.props.list)
+          
+        }
+          <List list={this.props.list} removeListItem={this.removeListItem}>
           </List>
         </div>
       </>
@@ -52,10 +69,18 @@ class App extends React.Component {
 }
 
 // export default App;
-function mapStateToProps(state, wonProps) {
+function mapStateToProps(state, ownProps) {
   return {
     list: state.app.list
   }
 }
+function mapDispatchToProps(dispatch, ownProps) {
+  return bindActionCreators(
+    {
+      ADD_ITEM
+    },
+    dispatch
+  )
+}
 
-export default connect( mapStateToProps )(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)

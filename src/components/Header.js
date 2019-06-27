@@ -19,10 +19,10 @@ class Header extends React.Component {
         this.setState((state) => ({
             [name]: value
         }))
-
     }
     additem(event) {
-        this.props.additem(event, this.state)
+        event.preventDefault();
+        this.props.additem(this.state)
     }
     clearInput(state) {
         this.setState(
@@ -73,4 +73,4 @@ function mapStateToProps(state, ownProps) {
 
 
 
-export default connect( mapStateToProps)(Header)
+export default connect(mapStateToProps)(Header)
