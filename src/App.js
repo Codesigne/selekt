@@ -4,6 +4,8 @@ import './App.scss';
 import List from './components/List'
 import Header from './components/Header'
 
+import { connect } from 'react-redux'
+
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -17,7 +19,7 @@ class App extends React.Component {
     event.preventDefault();
     (item.msg !== "") &&
       (this.setState(state => {
-        let {  list } = state;
+        let { list } = state;
         return { list: [...list, { id: Date.now(), ...item }] }
       }, this.clearInput
       ))
@@ -49,4 +51,11 @@ class App extends React.Component {
   }
 }
 
-export default App;
+// export default App;
+function mapStateToProps(state, wonProps) {
+  return {
+    list: state.app.list
+  }
+}
+
+export default connect( mapStateToProps )(App)

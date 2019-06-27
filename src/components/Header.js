@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { connect } from 'react-redux'
+
+// import actions from '../store/actions/index'
+
 class Header extends React.Component {
     constructor(props) {
         super(props)
@@ -15,6 +19,7 @@ class Header extends React.Component {
         this.setState((state) => ({
             [name]: value
         }))
+
     }
     additem(event) {
         this.props.additem(event, this.state)
@@ -57,4 +62,15 @@ class Header extends React.Component {
     }
 }
 
-export default Header;
+// export default Header;
+
+function mapStateToProps(state, ownProps) {
+    return {
+        msg: state.header.msg,
+        status: state.header.status,
+    }
+}
+
+
+
+export default connect( mapStateToProps)(Header)
