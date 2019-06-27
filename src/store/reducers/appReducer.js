@@ -11,19 +11,22 @@ function headerReducer(state = initialState, action) {
                     action.payload
                 ]
             }
-            break;
+            // break;
+        case "REMOVE_LIST_ITEM":
+            return {
+                list: [
+                    ...state.list.filter(item => {
+                        return item.id !== action.payload.id
+                    })
+                ]
+            }
+            // break;
 
         default:
             return {
-                list: []
+                list: [...state.list,]
             }
-            break;
+            // break;
     }
-
-
-
-
-
-
 }
 export default headerReducer;

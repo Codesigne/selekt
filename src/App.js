@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 
-import { ADD_ITEM } from './store/actions/index'
+import  * as action  from './store/actions/index'
 
 class App extends React.Component {
   constructor(props) {
@@ -27,19 +27,22 @@ class App extends React.Component {
     //   return { list: [...list, { id: Date.now(), ...item }] }
     // }, this.clearInput
     // ))
-    
+
     console.log("app additem", item);
     (item.msg !== "") && (
       this.props.ADD_ITEM(item))
-
   }
   removeListItem(event) {
     let id = parseInt(event.target.dataset.itemkey)
-    this.setState(state => ({
-      list: this.state.list.filter(item => {
-        return item.id !== id
-      })
-    }))
+    // this.setState(state => ({
+    //   list: this.state.list.filter(item => {
+    //     return item.id !== id
+    //   })
+    // }))
+    this.props.REMOVE_LIST_ITEM(id)
+    
+
+
   }
   render() {
     return (
@@ -53,13 +56,9 @@ class App extends React.Component {
         >
         </Header>
         <div className="p-2">
-
-        
-        {
-
-          console.log(this.props.list)
-          
-        }
+          {
+            console.log(this.props.list)
+          }
           <List list={this.props.list} removeListItem={this.removeListItem}>
           </List>
         </div>
@@ -77,7 +76,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch, ownProps) {
   return bindActionCreators(
     {
-      ADD_ITEM
+     ...action
     },
     dispatch
   )

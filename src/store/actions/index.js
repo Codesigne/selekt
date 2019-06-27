@@ -5,8 +5,17 @@ export function ADD_ITEM(item) {
     return {
         type: type.ADD_ITEM,
         payload: {
-            id:Date.now(),
+            id: Date.now(),
             ...item
+        }
+    }
+} 
+export function REMOVE_LIST_ITEM(id) {
+    console.log("in action  dfsdfsdf");
+    return {
+        type: type.REMOVE_LIST_ITEM,
+        payload: {
+            id
         }
     }
 }
