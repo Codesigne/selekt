@@ -9,4 +9,7 @@ const rootReducer = combineReducers(
         header : headerReducer,
     }
 )
+// export function selectList(state) {
+//     return state.app.list
+// }
 export default rootReducer

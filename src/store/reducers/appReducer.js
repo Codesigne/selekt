@@ -2,7 +2,7 @@ let initialState = {
     list: []
 }
 
-function headerReducer(state = initialState, action) {
+function appReducer(state = initialState, action) {
     switch (action.type) {
         case "ADD_ITEM":
             return {
@@ -29,4 +29,4 @@ function headerReducer(state = initialState, action) {
             // break;
     }
 }
-export default headerReducer;
+export default appReducer;
