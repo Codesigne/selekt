@@ -1,10 +1,11 @@
 import { connect } from 'react-redux'
 import Header from '../components/Header'
-
+import {getMsg, getMsgUppercase, getMsgStatus } from '../store/reducers/headerReducer'
 function mapStateToProps(state, ownProps) {
     return {
-        msg: state.header.msg,
-        status: state.header.status,
+        msg: getMsg(state),
+        status: getMsgStatus(state),
+        status_1: getMsgUppercase(state),
     }
 }
 
